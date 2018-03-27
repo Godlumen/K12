@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        body {}
+    </style>
+</head>
+
+<body>
+  <div id="test">
+    <ul>
+      <template v-for="item in items">
+        <li>{{item.name}}</li>
+        <li>******</li>
+      </template>
+      <template v-for="value in object">
+         <li>{{value}}</li>
+      </template>
+    </ul>
+    <div>{{message}}</div>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript">
+  var vm = new Vue({
+    el:'#test',
+    data:{
+      items:[
+        {name:"cicasa"},
+        {name:"godlumen"}
+      ],
+      object:{
+        name:"lumen",
+        age:12
+      }
+    }
+  })
+</script>
+</html>
