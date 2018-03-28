@@ -7,83 +7,66 @@
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <link rel="stylesheet" type="text/css" href="./css/hui.css" />
     <style type="text/css">
-        html,
-        body {
-            height: 100%;
-        }
-
-        .wrap {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-flex-flow: column;
-        }
-
-        header {
-            height: 44px;
-            width: 100%;
-            text-align: center;
-            background-color: #81a9c3;
-            color: #fff;
-            line-height: 44px;
-            font-size: 20px;
-        }
-
-        .flex-1 {
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-        }
-
-        footer {
-            height: 30px;
-            width: 100%;
-            background-color: #81a9c3;
-            color: white;
-            line-height: 30px;
-            text-align: center;
-        }
     </style>
 </head>
 
-<body class="wrap">
-    <header>APICloud</header>
-    <section class="flex-1">
-
-    </section>
-    <footer>Copyright &copy;<span id="year"></span></footer>
+<body>
+<header class="hui-header" id="header">
+    <h1>{{appName}}</h1>
+    <!-- <div id="hui-header-sreach-icon"></div> -->
+</header>
+<div class="hui-wrap">
+    <div class="hui-common-title" style="margin-top:15px;">
+        <div class="hui-common-title-line"></div>
+        <div class="hui-common-title-txt">首页</div>
+        <div class="hui-common-title-line"></div>
+    </div>
+</div>
+<div id="hui-footer">
+    <a href="javascript:hui.back();" id="nav-home">
+        <div class="hui-footer-icons hui-icons-home"></div>
+        <div class="hui-footer-text">首页</div>
+    </a>
+    <a href="javascript:hui.toast('新闻');" id="nav-news">
+        <div class="hui-footer-icons hui-icons-news"></div>
+        <div class="hui-footer-text">作业</div>
+    </a>
+    <div style="width:20%; text-align:center;" class="hui-fl">
+        <img src="image/footer_logo.png" height="44" onclick="hui.back();" />
+    </div>
+    <a href="javascript:hui.toast('社区');" id="nav-forum" class="hui-footer-active">
+        <div class="hui-footer-icons hui-icons-forum"></div>
+        <div class="hui-footer-text">学习社区</div>
+    </a>
+    <a href="javascript:hui.toast('我的');" id="nav-my">
+        <div class="hui-footer-icons hui-icons-my"></div>
+        <div class="hui-footer-text">我的</div>
+    </a>
+</div>
 </body>
 <script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/hui/hui.js"></script>
+<script type="text/javascript" src="./script/vue.js"></script>
 <script type="text/javascript">
+    var vm;
     apiready = function() {
-        //输出Log，Log将显示在APICloud Studio控制台
-        console.log("Hello World! Hello APICloud!");
+      var header = $api.byId('header');
+      $api.fixStatusBar(header);
+      var headerPos = $api.offset(header);
+      var body_h = $api.offset($api.dom('body')).h;
+      vm = new Vue({
+        el:'#header',
+        data:{
+          appName:"K12"
+        }
+      });
 
-        var header = $api.dom('header'); // 获取 header 标签元素
-        var footer = $api.dom('footer'); // 获取 footer 标签元素
-
-        // 1.修复开启沉浸式效果带来的顶部Header与手机状态栏重合的问题，最新api.js方法已支持适配iPhoneX；
-        // 2.默认已开启了沉浸式效果 config.xml中 <preference name="statusBarAppearance" value="true"/>
-        // 3.沉浸式效果适配支持iOS7+，Android4.4+以上版本
-        var headerH = $api.fixStatusBar(header);
-        // 最新api.js为了适配iPhoneX增加的方法，修复底部Footer部分与iPhoneX的底部虚拟横条键重叠的问题；
-        var footerH = $api.fixTabBar(footer);
-
-        api.openFrame({
-            name: 'main',
-            url: 'html/main.html',
-            bounces: true,
-            rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
-                marginTop: headerH, // main页面距离win顶部的高度
-                marginBottom: footerH, // main页面距离win底部的高度
-                w: 'auto' // main页面的宽度 自适应屏幕宽度
-            }
-        });
-
-        // 获取当前年份时间，并加载显示到页面
-        var year = $api.byId('year');
-        year.innerHTML = new Date().getFullYear();
+      hui('#nav-my').pointMsg();
+      hui('#nav-news').pointMsg('hot', null, null, null, '1px');
+      hui('#nav-forum').pointMsg(8);
     };
-
 </script>
 
 </html>

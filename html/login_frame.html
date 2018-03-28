@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="hui-wrap">
+    <div id="main">
         <div style="margin:20px 10px; margin-bottom:15px;" class="hui-form" id="form1">
             <div class="hui-form-items">
                 <div class="hui-form-items-title">用户名</div>
@@ -28,39 +28,41 @@
         <div style="padding:10px; padding-top:10px;" id="submit">
             <button type="button" class="hui-button hui-button-large hui-primary" v-on:click="submit">登录</button>
         </div>
-    </div>
-    <div id="vue">
-      <h1>name : {{name}}</h1>
-      <h1>age : {{age}}</h1>
-    </div>
+        <div>{{message}}
+            <div>
+            </div>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/vue.js"></script>
 <script type="text/javascript" src="../script/axios.min.js"></script>
-<script type="text/javascript" src="../script/hui/hui-form.js" charset="utf-8"></script>
+<script type="text/javascript" src="../script/hui/hui.js"></script>
+<script type="text/javascript" src="../script/hui/hui-form.js"></script>
 <script type="text/javascript">
-//消除移动端点击的300ms延迟
-// if ('addEventListener' in document) {
-//     document.addEventListener('DOMContentLoaded', function() {
-//         FastClick.attach(document.body);
-//     }, false);
-// }
-    var data = {name : "godlumen", age : 15};
+    //消除移动端点击的300ms延迟
+    // if ('addEventListener' in document) {
+    //     document.addEventListener('DOMContentLoaded', function() {
+    //         FastClick.attach(document.body);
+    //     }, false);
+    // }
     var vm;
-    // apiready = function() {
-      vm = new Vue({
-        el: '#vue',
-        data: data
-      })
-        // hui('#submit').click(function() {
-        //     //验证
-        //     var res = huiFormCheck('#form1');
-        //     //提交
-        //     if (res) {
-        //         hui.iconToast('验证通过！');
-        //     }
-        // });
-    // };
+    apiready = function() {
+        vm = new Vue({
+            el: '#main',
+            data: {
+                message: "mmmm"
+            },
+            methods: {
+                submit: function() {
+                    //验证
+                    var res = huiFormCheck('#form1');
+                    //提交
+                    if (res) {
+                        hui.iconToast('验证通过！');
+                    }
+                }
+            }
+        });
+    };
 </script>
 
 </html>

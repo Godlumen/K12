@@ -1,6 +1,6 @@
-/* 
+/*
 版本 : hui 3.0
-作者 : 深海 5213606@qq.com 
+作者 : 深海 5213606@qq.com
 官网 : http://www.hcoder.net/hui
 */
 *{margin:0; padding:0; font-size:15px; color:#000000; outline:none; -webkit-text-size-adjust:100%; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-style:normal; -webkit-tap-highlight-color:transparent; font-family:sans-serif;}
@@ -346,7 +346,7 @@ input[type="month"].hui-picker-valued:before,input[type="date"].hui-picker-value
 /* header search */
 #hui-header-sreach{width:100%; border-radius:5px; height:32px; margin:6px; display:flex; background:#FFFFFF;}
 #hui-header-sreach-icon{width:36px; height:36px; line-height:36px; text-align:center; flex-shrink:0;}
-#hui-header-sreach-icon::before{font-family:"hui-font"; content:'\e714'; font-size:25; height:36px; line-height:36px; color:#9E9E9E;}
+#hui-header-sreach-icon::before{font-family:"hui-font"; content:'\e714'; font-size:25; height:36px; line-height:36px; color:#FFFFFF;}
 #hui-header-sreach input{width:100%; padding:0px; height:32px !important; line-height:32px !important; margin:0px !important; -webkit-appearance:none; -moz-appearance:none; appearance:none; border:0; font-size:14px; text-indent:10px;}
 .hui-header-sreach-txt{width:58px; height:44px; text-align:center; line-height:44px; flex-shrink:0; color:#FFF; flex-shrink:0;}
 /* swipe do */
@@ -435,7 +435,7 @@ input[type="month"].hui-picker-valued:before,input[type="date"].hui-picker-value
 .hui-icons{font-family:"hui-font" !important; font-style:normal; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; padding-right:8px;}
 .hui-icons-menu:before{content:"\e634";} .hui-icons-toast:before{content:"\e689";} .hui-icons-img:before{content:"\e620";}
 .hui-icons-left:before{content:"\e6a5";} .hui-icons-right:before{content:"\e608";} .hui-icons-number:before{content:"\e604";}
-.hui-icons-up:before{content:"\e649";}  .hui-icons-up2:before{content:"\e655";} .hui-icons-down:before{content:"\e744";} 
+.hui-icons-up:before{content:"\e649";}  .hui-icons-up2:before{content:"\e655";} .hui-icons-down:before{content:"\e744";}
 .hui-icons-down2:before{content:"\e609";} .hui-icons-progress:before{content:"\e615";}
 .hui-icons-success:before{content:"\e632";} .hui-icons-error:before{content:"\e638";} .hui-icons-range:before{content:"\e613";}
 .hui-icons-warn:before{content:"\e603";} .hui-icons-click:before{content:"\e75b";} .hui-icons-tab:before{content:"\e667";}
@@ -445,10 +445,10 @@ input[type="month"].hui-picker-valued:before,input[type="date"].hui-picker-value
 .hui-icons-swipe:before{content:"\e699";} .hui-icons-media-list:before{content:"\e62d";} .hui-icons-my:before{content:"\e618";}
 .hui-icons-forum:before{content:"\e602";} .hui-icons-shop:before{content:"\e67f";} .hui-icons-nav:before{content:"\e606";}
 .hui-icons-menu-point:before{content:"\e60e";} .hui-icons-menu-point2:before{content:"\e625";} .hui-icons-star:before{content:"\e661";}
-.hui-icons-msg:before{content:"\e60b";} .hui-icons-help:before{content:"\e652";} .hui-icons-water-fall:before{content:"\e60c";} 
-.hui-icons-search:before{content:'\e714';} .hui-icons-img-cut:before{content:'\e612';} .hui-icons-register:before{content:'\e677';} 
-.hui-icons-write:before{content:'\e646';} .hui-icons-logoff:before{content:'\e610';} .hui-icons-check:before{content:'\e866';} 
-.hui-icons-loading2:before{content:"\e61e";} .hui-icons-insert:before{content:"\e6ee";} .hui-icons-clone:before{content:"\e6dc";} 
-.hui-icons-remove:before{content:"\e656";} .hui-icons-edit:before{content:"\e600";} .hui-icons-like:before{content:"\e64a";} 
-.hui-icons-pause:before{content:"\e96b";} .hui-icons-play:before{content:"\e6b1";} .hui-icons-stop:before{content:"\e61b";} 
+.hui-icons-msg:before{content:"\e60b";} .hui-icons-help:before{content:"\e652";} .hui-icons-water-fall:before{content:"\e60c";}
+.hui-icons-search:before{content:'\e714';} .hui-icons-img-cut:before{content:'\e612';} .hui-icons-register:before{content:'\e677';}
+.hui-icons-write:before{content:'\e646';} .hui-icons-logoff:before{content:'\e610';} .hui-icons-check:before{content:'\e866';}
+.hui-icons-loading2:before{content:"\e61e";} .hui-icons-insert:before{content:"\e6ee";} .hui-icons-clone:before{content:"\e6dc";}
+.hui-icons-remove:before{content:"\e656";} .hui-icons-edit:before{content:"\e600";} .hui-icons-like:before{content:"\e64a";}
+.hui-icons-pause:before{content:"\e96b";} .hui-icons-play:before{content:"\e6b1";} .hui-icons-stop:before{content:"\e61b";}
 .hui-icons-shopping-cart:before{content:"\e633";} .hui-icons-close:before{content:"\e617";}
