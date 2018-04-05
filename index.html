@@ -9,75 +9,102 @@
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
     <link rel="stylesheet" type="text/css" href="./css/hui.css" />
     <style type="text/css">
+
     </style>
 </head>
 
 <body>
-<div id="body">
-<header class="hui-header" id="header">
-    <h1>{{appName}}</h1>
-    <div class="hui-header-sreach-txt" v-on:click="search">搜索</div>
-</header>
-<div class="hui-wrap">
-    <div class="hui-common-title" style="margin-top:15px;">
-        <div class="hui-common-title-line"></div>
-        <div class="hui-common-title-txt">首页展示</div>
-        <div class="hui-common-title-line"></div>
+    <header class="hui-header" id="header">
+        <h1>K12</h1>
+        <!-- <div id="hui-header-sreach-icon"></div> -->
+    </header>
+    <div id="hui-footer">
+        <a id="nav-home" onclick="randomSwitchBtn(1,'home')">
+            <div class="hui-footer-icons hui-icons-home hui-footer-active"></div>
+            <div class="hui-footer-text">首页</div>
+        </a>
+        <a id="nav-tasks" onclick="randomSwitchBtn(2,'task')">
+            <div class="hui-footer-icons hui-icons-news"></div>
+            <div class="hui-footer-text">作业</div>
+        </a>
+        <div style="width:20%; text-align:center;" class="hui-fl">
+            <img src="./image/footer_logo.png" height="44" onclick="hui.back();" />
+        </div>
+        <a id="nav-forum" onclick="randomSwitchBtn(3,'forum')">
+            <div class="hui-footer-icons hui-icons-forum"></div>
+            <div class="hui-footer-text">学习社区</div>
+        </a>
+        <a id="nav-my" onclick="randomSwitchBtn(4,'my')">
+            <div class="hui-footer-icons hui-icons-my"></div>
+            <div class="hui-footer-text">我的</div>
+        </a>
     </div>
-</div>
-<div id="hui-footer">
-    <a v-on:click = randomSwitchBtn(0,'main')>
-        <div class="hui-footer-icons hui-icons-home"></div>
-        <div class="hui-footer-text">首页</div>
-    </a>
-    <a v-on:click = randomSwitchBtn(1,'task')>
-        <div class="hui-footer-icons hui-icons-news"></div>
-        <div class="hui-footer-text">作业</div>
-    </a>
-    <div style="width:20%; text-align:center;" class="hui-fl">
-        <img src="image/footer_logo.png" height="44"/>
-    </div>
-    <a v-on:click = randomSwitchBtn(3,'forum')>
-        <div class="hui-footer-icons hui-icons-forum"></div>
-        <div class="hui-footer-text">学习社区</div>
-    </a>
-    <a v-on:click = randomSwitchBtn(4,'my')>
-        <div class="hui-footer-icons hui-icons-my"></div>
-        <div class="hui-footer-text">我的</div>
-    </a>
-</div>
-</div>
 </body>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript" src="./script/hui/hui.js"></script>
-<script type="text/javascript" src="./script/vue.js"></script>
 <script type="text/javascript">
-    var vm;
-    // apiready = function() {
-      // var header = $api.byId('header');
-      // $api.fixStatusBar(header);
-      // var headerPos = $api.offset(header);
-      // var body_h = $api.offset($api.dom('body')).h;
-      vm = new Vue({
-        el:'#body',
-        data:{
-          appName : "K12",
-          isActive : false
-        },
-        methods:{
-          search:function(event){
-            alert(event.target.tagName);
-          },
-          randomSwitchBtn:fsunction(index,name){
-            alert(index);
-          }
-        }
-      });
+    apiready = function() {
+        var header = $api.byId('header');
+        $api.fixStatusBar(header);
+        openGroup();
+        hui('#nav-my').pointMsg();
+        hui('#nav-tasks').pointMsg(8);
+    };
 
-      hui('#nav-my').pointMsg();
-      hui('#nav-news').pointMsg(5);
-      hui('#nav-forum').pointMsg('hot', null, null, null, '1px');
-    // };
+    function openGroup() {
+        var header = $api.byId('header');
+        var headerPos = $api.offset(header);
+        var body_h = $api.offset($api.dom('body')).h;
+        var footer_h = $api.offset($api.byId('hui-footer')).h;
+        api.openFrameGroup({
+            name: 'indexGroup',
+            scrollEnabled: true,
+            rect: {
+                x: 0,
+                y: headerPos.h,
+                w: 'auto',
+                h: body_h - headerPos.h - footer_h
+            },
+            index: 0,
+            frames: [{
+                name: 'home',
+                url: 'html/main.html',
+                vScrollBarEnabled: false,
+                hScrollBarEnabled: false,
+                bounces: false
+            }, {
+                name: 'task',
+                url: 'html/task.html',
+                vScrollBarEnabled: false,
+                hScrollBarEnabled: false,
+                bounces: true
+            }, {
+                name: 'forum',
+                url: 'html/forum.html',
+                vScrollBarEnabled: false,
+                hScrollBarEnabled: false,
+                bounces: false
+            }, {
+                name: 'my',
+                url: 'html/my.html',
+                vScrollBarEnabled: false,
+                hScrollBarEnabled: false,
+                bounces: false
+            }]
+        }, function(ret, err) {
+            // $api.removeCls($api.dom('#aui-footer li.active-info'), 'active-info');
+            // $api.addCls($api.byId('' + ret.name + ''), 'active-info');
+        });
+    }
+    // 随意切换按钮
+    function randomSwitchBtn(index, name) {
+        // $api.removeCls($api.dom('#aui-footer li.active-info'), 'active-info');
+        // $api.addCls($api.byId('' + name + ''), 'active-info');
+        // api.setFrameGroupIndex({
+        //     name: 'indexGroup',
+        //     index: index
+        // });
+    }
 </script>
 
 </html>
