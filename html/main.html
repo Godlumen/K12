@@ -7,65 +7,114 @@
     <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
-    <style>
-        label {
-            margin: 10px;
-            font-size: 24px;
-        }
-
-        ul {
-            margin-bottom: 10px;
-        }
-
-        ul li {
-            margin: 5px 10px;
-            padding: 5px;
-            color: #000;
-            word-wrap: break-word;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../css/hui.css" />
 </head>
 
 <body>
-    <label>Hello APP</label>
-    <div id='sys-info'></div>
+    <div class="hui-wrap">
+        <div style="background:#FFF; padding:0px 15px; margin:10px;" class="hui-flex">
+            <div style="height:46px; width:20px;">
+                <img src="../image/spiker.png" width="18" style="padding:13px 0px;" />
+            </div>
+            <div class="hui-scroll-news" id="scrollnew1">
+                <div class="hui-scroll-news-items"><a href="javascript:hui.toast('test...');">欢迎使用K12!</a></div>
+                <div class="hui-scroll-news-items">针对孩子专业级的辅导专家!</div>
+                <!-- <script id="a-template" type="text/x-dot-template">
+
+
+                  </script>
+                  <div id="a-content"></div> -->
+                <div class="hui-scroll-news-items" id="scroll">您有未完成的作业请查看!</div>
+            </div>
+        </div>
+        <div style="padding:10px;">
+            <div class="hui-swipe" id="swipe">
+                <div class="hui-swipe-items">
+                    <div class="hui-swipe-item"><img src="../image/swipe1.jpg" /></div>
+                    <div class="hui-swipe-item"><img src="../image/swipe2.jpg" /></div>
+                    <div class="hui-swipe-item"><img src="../image/swipe3.jpg" /></div>
+                    <div class="hui-swipe-item"><img src="../image/swipe4.jpg" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="hui-center-title">
+            <h1>学习天地</h1></div>
+        <div class="hui-media-list" style="padding:10px;">
+            <ul>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home1.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home2.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home3.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>笑对人生，能穿透迷雾；笑对人生，能坚持到底；笑对人生，能化解危机；笑对人生，能照亮黑暗。</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home1.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home2.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <div class="hui-media-list-img"><img src="../image/home3.jpg" /></div>
+                        <div class="hui-media-content">
+                            <h1>标题内容....</h1>
+                            <p>笑对人生，能穿透迷雾；笑对人生，能坚持到底；笑对人生，能化解危机；笑对人生，能照亮黑暗。</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/hui/hui.js"></script>
+<script type="text/javascript" src="../script/hui/hui-swipe.js"></script>
+<script type="text/javascript" src="../script/doT.min.js"></script>
+<script type="text/javascript" src="../script/fastclick.js"></script>
 <script type="text/javascript">
+    var id;
     apiready = function() {
-        var ver = api.version;
-        var sType = api.systemType;
-        var sVer = api.systemVersion;
-        var id = api.deviceId;
-        var model = api.deviceModel;
-        var name = api.deviceName;
-        var cType = api.connectionType;
-        var winName = api.winName;
-        var winWidth = api.winWidth;
-        var winHeight = api.winHeight;
-        var frameName = api.frameName || '';
-        var frameWidth = api.frameWidth || '';
-        var frameHeight = api.frameHeight || '';
+        id = $api.getStorage('id');
+        if (id) {
 
-        var str = '<ul>';
-        str += '<li>引擎版本信息: ' + ver + '</li>';
-        str += '<li>系统类型: ' + sType + '</li>';
-        str += '<li>系统版本: ' + sVer + '</li>';
-        str += '<li>设备标识: ' + id + '</li>';
-        str += '<li>设备型号: ' + model + '</li>';
-        str += '<li>设备名称: ' + name + '</li>';
-        str += '<li>网络状态: ' + cType + '</li>';
-        str += '<li>主窗口名字: ' + winName + '</li>';
-        str += '<li>主窗口宽度: ' + winWidth + '</li>';
-        str += '<li>主窗口高度: ' + winHeight + '</li>';
-        str += '<li>子窗口名字: ' + frameName + '</li>';
-        str += '<li>子窗口宽度: ' + frameWidth + '</li>';
-        str += '<li>子窗口高度: ' + frameHeight + '</li>';
-        str += '</ul>';
-
-        $api.byId('sys-info').innerHTML = str;
-
+        }
+        hui.scrollNews(scrollnew1);
+        var swipe = new huiSwpie('#swipe');
+        swipe.autoPlay = true;
+        swipe.run();
     };
 </script>
 

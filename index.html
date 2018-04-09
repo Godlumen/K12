@@ -14,47 +14,60 @@
 </head>
 
 <body>
-    <header class="hui-header" id="header">
+    <header class="hui-header" id="hui-header">
         <h1>K12</h1>
         <!-- <div id="hui-header-sreach-icon"></div> -->
     </header>
     <div id="hui-footer">
-        <a id="nav-home" onclick="randomSwitchBtn(1,'home')">
-            <div class="hui-footer-icons hui-icons-home hui-footer-active"></div>
+        <a id="home" class="hui-footer-active" onclick="randomSwitchBtn(0,'home')">
+            <div class="hui-footer-icons hui-icons-home"></div>
             <div class="hui-footer-text">首页</div>
         </a>
-        <a id="nav-tasks" onclick="randomSwitchBtn(2,'task')">
+        <a id="task" onclick="randomSwitchBtn(1,'task')">
             <div class="hui-footer-icons hui-icons-news"></div>
             <div class="hui-footer-text">作业</div>
         </a>
         <div style="width:20%; text-align:center;" class="hui-fl">
             <img src="./image/footer_logo.png" height="44" onclick="hui.back();" />
         </div>
-        <a id="nav-forum" onclick="randomSwitchBtn(3,'forum')">
+        <a id="forum" onclick="randomSwitchBtn(2,'forum')">
             <div class="hui-footer-icons hui-icons-forum"></div>
             <div class="hui-footer-text">学习社区</div>
         </a>
-        <a id="nav-my" onclick="randomSwitchBtn(4,'my')">
-            <div class="hui-footer-icons hui-icons-my"></div>
+        <a id="my" onclick="randomSwitchBtn(3,'my')">
+            <div class="hui-footer-icons hui-icons-my hui-footer-active"></div>
             <div class="hui-footer-text">我的</div>
         </a>
     </div>
 </body>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript" src="./script/hui/hui.js"></script>
+<script type="text/javascript" src="./script/fastclick.js"></script>
+<script type="text/javascript" src="./script/doT.min.js"></script>
 <script type="text/javascript">
+    var id;
     apiready = function() {
-        var header = $api.byId('header');
+        //消除移动端点击的300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+        var header = $api.byId('hui-header');
         $api.fixStatusBar(header);
+        id = $api.getStorage('id');
         openGroup();
-        hui('#nav-my').pointMsg();
-        hui('#nav-tasks').pointMsg(8);
+        if (id == null) {
+          hui('#my').pointMsg();
+          hui('#task').pointMsg(8);
+        } else {
+        }
     };
 
     function openGroup() {
-        var header = $api.byId('header');
+        var header = $api.byId('hui-header');
         var headerPos = $api.offset(header);
-        var body_h = $api.offset($api.dom('body')).h;
+        var body_h = api.winHeight;
         var footer_h = $api.offset($api.byId('hui-footer')).h;
         api.openFrameGroup({
             name: 'indexGroup',
@@ -77,7 +90,7 @@
                 url: 'html/task.html',
                 vScrollBarEnabled: false,
                 hScrollBarEnabled: false,
-                bounces: true
+                bounces: false
             }, {
                 name: 'forum',
                 url: 'html/forum.html',
@@ -92,18 +105,18 @@
                 bounces: false
             }]
         }, function(ret, err) {
-            // $api.removeCls($api.dom('#aui-footer li.active-info'), 'active-info');
-            // $api.addCls($api.byId('' + ret.name + ''), 'active-info');
+            $api.removeCls($api.dom('#hui-footer a.hui-footer-active'), 'hui-footer-active');
+            $api.addCls($api.byId('' + ret.name + ''), 'hui-footer-active');
         });
     }
     // 随意切换按钮
     function randomSwitchBtn(index, name) {
-        // $api.removeCls($api.dom('#aui-footer li.active-info'), 'active-info');
-        // $api.addCls($api.byId('' + name + ''), 'active-info');
-        // api.setFrameGroupIndex({
-        //     name: 'indexGroup',
-        //     index: index
-        // });
+        $api.removeCls($api.dom('#hui-footer a.hui-footer-active'), 'hui-footer-active');
+        $api.addCls($api.byId('' + name + ''), 'hui-footer-active');
+        api.setFrameGroupIndex({
+            name: 'indexGroup',
+            index: index
+        });
     }
 </script>
 

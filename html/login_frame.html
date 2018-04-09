@@ -26,43 +26,77 @@
             </div>
         </div>
         <div style="padding:10px; padding-top:10px;" id="submit">
-            <button type="button" class="hui-button hui-button-large hui-primary" v-on:click="submit">登录</button>
+            <button type="button" class="hui-button hui-button-large hui-primary" id="submit">登录</button>
         </div>
-        <div>{{message}}
-            <div>
-            </div>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/vue.js"></script>
-<script type="text/javascript" src="../script/axios.min.js"></script>
 <script type="text/javascript" src="../script/hui/hui.js"></script>
 <script type="text/javascript" src="../script/hui/hui-form.js"></script>
+<script type="text/javascript" src="../script/fastclick.js"></script>
 <script type="text/javascript">
-    //消除移动端点击的300ms延迟
-    // if ('addEventListener' in document) {
-    //     document.addEventListener('DOMContentLoaded', function() {
-    //         FastClick.attach(document.body);
-    //     }, false);
-    // }
-    var vm;
     apiready = function() {
-        vm = new Vue({
-            el: '#main',
-            data: {
-                message: "mmmm"
-            },
-            methods: {
-                submit: function() {
-                    //验证
-                    var res = huiFormCheck('#form1');
-                    //提交
-                    if (res) {
-                        hui.iconToast('验证通过！');
-                    }
-                }
-            }
-        });
+        //消除移动端点击的300ms延迟
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
     };
+    hui('#submit').click(function() {
+        //验证
+        var res = huiFormCheck('#form1');
+        //提交
+        if (res) {
+            hui.ajax({
+                type: 'GET',
+                url: 'http://hoa.hcoder.net',
+                data: {
+                    name: 'hcoder',
+                    age: 10
+                },
+                beforeSend: function() {
+                    hui.loading();
+                },
+                complete: function() {
+                    hui.closeLoading();
+                },
+                success: function(msg) {
+                    hui.upToast(msg);
+                    $api.setStorage('id', msg.id);
+                    var js = 'location.reload();';
+                    api.execScript({
+                        name: 'root',
+                        frameName: 'home',
+                        script: js
+                    });
+                    api.execScript({
+                        name: 'root',
+                        frameName: 'task',
+                        script: js
+                    });
+                    api.execScript({
+                        name: 'root',
+                        frameName: 'forum',
+                        script: js
+                    });
+                    api.execScript({
+                        name: 'root',
+                        frameName: 'my',
+                        script: js
+                    });
+                    api.closeWin();
+                    api.setFrameGroupIndex({
+                        name: 'indexGroup',
+                        index: api.pageParam.index
+                    });
+                },
+                error: function(e) {
+                    console.log(JSON.stringify(e));
+                    hui.iconToast('读取消息失败', 'warn');
+                }
+            });
+        }
+    });
 </script>
 
 </html>

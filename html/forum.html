@@ -1,23 +1,130 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-      <title>title</title>
-      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-      <style>
-          body{
+<html>
 
-          }
-      </style>
-  </head>
-  <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/hui.css" />
+    <style>
+        #list2 li {
+            width: 50%;
+            float: left;
+            0px;
+        }
 
-  </body>
-  <script type="text/javascript" src="../script/api.js"></script>
-  <script type="text/javascript">
-      apiready = function(){
+        #list2 .hui-img-list-content {
+            padding: 5px;
+            padding-bottom: 10px;
+        }
 
-      };
-  </script>
-  </html>
+        #list2 h1 {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hui-wrap">
+        <div class="hui-img-list" id="list2" style="padding:10px 5px;">
+            <ul>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum1.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum2.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum3.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum4.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum1.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum2.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum3.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:hui.toast('hi...');">
+                        <img src="../image/forum4.jpg" />
+                        <div class="hui-img-list-content">
+                            <h1>标题内容....</h1>
+                            <p>power by hcoder.net</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/hui/hui.js"></script>
+<script type="text/javascript" src="../script/doT.min.js"></script>
+<script type="text/javascript">
+var id;
+    apiready = function() {
+      id = $api.getStorage('id');
+      if(id){
+
+      }
+      else{
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            pageParam: {
+                index: 2
+            }
+        });
+      }
+    };
+</script>
+
+</html>

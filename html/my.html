@@ -5,19 +5,142 @@
       <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
       <title>title</title>
       <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-      <style>
-          body{
-
-          }
-      </style>
+      <link rel="stylesheet" type="text/css" href="../css/hui.css"/>
   </head>
   <body>
-
+    <div class="hui-wrap">
+      <div class="hui-list" style="background:#FFFFFF; margin-top:28px;">
+          <a href="javascript:hui.toast('Hello Hcoder UI !');" style="height:auto; height:80px; padding-bottom:8px;">
+      		<div class="hui-list-icons" style="width:110px; height:80px;">
+      			<img src="../image/list/home.png" style="width:66px; margin:0px; border-radius:50%;" />
+      		</div>
+      		<div class="hui-list-text" style="height:79px; line-height:79px;">
+      			<div class="hui-list-text-content">
+      				Hcoder.net
+      			</div>
+      			<div class="hui-list-info">
+      				<span class="hui-icons hui-icons-right"></span>
+      			</div>
+      		</div>
+      	</a>
+      	<a href="javascript:hui.toast('Hello Hcoder UI !');">
+      		<div class="hui-list-text">
+      			账户余额 : 1000元 | 积分 : 2000
+      		</div>
+      	</a>
+      </div>
+      <div class="hui-list" style="background:#FFFFFF; margin-top:28px;">
+          <ul>
+              <li>
+              	<a href="javascript:void(0);">
+              		<div class="hui-list-icons">
+  		    			<img src="../image/list/sc.png" />
+  		    		</div>
+  		    		<div class="hui-list-text">
+  		    			我的收藏
+  		    			<div class="hui-list-info">
+  		    				<span class="hui-icons hui-icons-right"></span>
+  		    			</div>
+  		    		</div>
+              	</a>
+             	</li>
+              <li>
+              	<a href="javascript:void(0);">
+              		<div class="hui-list-icons">
+  		    			<img src="../image/list/ht.png" />
+  		    		</div>
+  		    		<div class="hui-list-text">
+  		    			我的老师
+  		    			<div class="hui-list-info">
+  		    				<span class="hui-icons hui-icons-right"></span>
+  		    			</div>
+  		    		</div>
+              	</a>
+             	</li>
+             	<li>
+              	<a href="javascript:void(0);">
+              		<div class="hui-list-icons">
+  		    			<img src="../image/list/order.png" />
+  		    		</div>
+  		    		<div class="hui-list-text">
+  		    			已完成题目
+  		    			<div class="hui-list-info">
+  		    				<span class="hui-icons hui-icons-right"></span>
+  		    			</div>
+  		    		</div>
+              	</a>
+             	</li>
+             	<li>
+              	<a href="javascript:void(0);">
+              		<div class="hui-list-icons">
+  		    			<img src="../image/list/lishi.png" />
+  		    		</div>
+  		    		<div class="hui-list-text">
+  		    			历史足迹
+  		    			<div class="hui-list-info">
+  		    				<span class="hui-icons hui-icons-right"></span>
+  		    			</div>
+  		    		</div>
+              	</a>
+             	</li>
+          </ul>
+      </div>
+      <div style="background:#FFFFFF; margin-top:28px;">
+          <button type="button" class="hui-button hui-button-large" id="quit">
+          	<span class="hui-icons hui-icons-logoff"></span>退出系统
+         	</button>
+      </div>
+  </div>
   </body>
   <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/hui/hui.js"></script>
+  <script type="text/javascript" src="../script/doT.min.js"></script>
+  <script type="text/javascript" src="../script/fastclick.js"></script>
   <script type="text/javascript">
-      apiready = function(){
+  var id;
+      apiready = function() {
+        id = $api.getStorage('id');
+        if(id){
 
+        }
+        else{
+          api.openWin({
+              name: 'login',
+              url: './login.html',
+              pageParam: {
+                  index: 3
+              }
+          });
+        }
       };
+      hui('#quit').click(function(){
+        $api.rmStorage('id')
+        var js = 'location.reload();';
+        api.execScript({
+            name: 'root',
+            frameName: 'home',
+            script: js
+        });
+        api.execScript({
+            name: 'root',
+            frameName: 'task',
+            script: js
+        });
+        api.execScript({
+            name: 'root',
+            frameName: 'forum',
+            script: js
+        });
+        api.execScript({
+            name: 'root',
+            frameName: 'my',
+            script: js
+        });
+        api.closeWin();
+        api.setFrameGroupIndex({
+            name: 'indexGroup',
+            index: 0
+        });
+      })
   </script>
   </html>
